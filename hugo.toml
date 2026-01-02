@@ -1,4 +1,4 @@
-baseURL = 'https://example.com/'
+baseURL = 'https://christianpeluso-portfolio.vercel.app/'
 languageCode = 'it-it' # Ho impostato italiano, cambialo se il sito è in EN
 title = 'Portfolio'
 theme = [] # No theme, custom layout
