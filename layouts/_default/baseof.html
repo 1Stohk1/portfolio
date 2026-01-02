@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+
+  {{ with site.Params.description }}
+  <meta name="description" content="{{ . }}">{{ end }}
+  <meta name="author" content="{{ site.Params.author }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description"
+    content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  {{ with .Params.featured_image }}
+  <meta property="og:image" content="{{ . | absURL }}" />{{ end }}
+
+  <!-- Critical CSS & Performance: Preload/Preconnect could go here -->
+
+  <!-- CSS Asset Pipeline -->
+  {{ $opts := dict "transpiler" "libsass" "targetPath" "css/style.css" "outputStyle" "compressed" }}
+  {{ $style := resources.Get "scss/main.scss" | toCSS $opts | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
+
+  {{ block "head_video" . }}{{ end }}
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="container">
+      <a href="/" class="logo">{{ site.Title }}</a>
+      <ul class="nav-links">
+        {{ range site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}" {{ if hasPrefix .URL "http" }}target="_blank" rel="noopener noreferrer" {{ end }}>
+            {{ .Pre | safeHTML }} {{ .Name }}
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="container">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ now.Format "2006" }} {{ site.Params.author }}. Built with <a href="https://gohugo.io/"
+          target="_blank" rel="noopener">Hugo</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Deferred JS if needed -->
+  {{ block "scripts" . }}{{ end }}
+</body>
+
+</html>

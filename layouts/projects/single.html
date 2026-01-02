@@ -1,0 +1,61 @@
+{{ define "main" }}
+
+<article class="project-single">
+    <header class="project-header">
+        <h1>{{ .Title }}</h1>
+        <div class="project-meta">
+            {{ if .Params.live_url }}
+            <a href="{{ .Params.live_url }}" target="_blank" rel="noopener" class="btn btn-sm">Live Demo</a>
+            {{ end }}
+            {{ if .Params.github_repo_url }}
+            <a href="{{ .Params.github_repo_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">GitHub
+                Repo</a>
+            {{ end }}
+        </div>
+
+        <div class="tech-stack">
+            <strong>Tech Stack:</strong>
+            {{ range .Params.tech_stack }}
+            <span class="badge">{{ . }}</span>
+            {{ end }}
+        </div>
+    </header>
+
+    {{ with .Params.featured_image }}
+    <figure class="project-hero-image">
+        <img src="{{ . }}" alt="{{ $.Title }} showcase">
+    </figure>
+    {{ end }}
+
+    <section class="star-method">
+        <h2>Case Study: The S.T.A.R. Approach</h2>
+        <div class="star-grid">
+            <div class="star-item">
+                <h3>Situation</h3>
+                <p>{{ .Params.star.situation }}</p>
+            </div>
+            <div class="star-item">
+                <h3>Task</h3>
+                <p>{{ .Params.star.task }}</p>
+            </div>
+            <div class="star-item full-width">
+                <h3>Action</h3>
+                <p>{{ .Params.star.action }}</p>
+            </div>
+            <div class="star-item full-width highlight">
+                <h3>Result</h3>
+                <p>{{ .Params.star.result }}</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="project-content">
+        {{ .Content }}
+    </div>
+
+    <nav class="project-nav">
+        <a href="/projects/">&larr; Back to Projects</a>
+    </nav>
+</article>
+
+{{ end }}

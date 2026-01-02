@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+{{/* --- HERO SECTION --- */}}
+<section class="hero" aria-label="Introduzione">
+    <div class="container">
+        {{ with .Site.Params.profile.image }}
+        <div class="hero__image-wrapper">
+            <img src="{{ . | relURL }}" alt="{{ $.Site.Params.profile.name }}" class="hero__image" width="150"
+                height="150">
+        </div>
+        {{ end }}
+        <span class="hero__greeting">Ciao, sono {{ .Site.Params.profile.name }}</span>
+        <h1 class="hero__title">{{ .Site.Params.profile.tagline }}</h1>
+
+        <div class="hero__bio">
+            {{/* Qui verrà iniettato il contenuto Markdown di content/_index.md (la tua bio scelta) */}}
+            {{ .Content }}
+        </div>
+
+        {{/* Sezione "Cosa sto studiando" - Condizionale */}}
+        {{ if .Site.Params.learning.active }}
+        <div class="current-learning">
+            <span class="current-learning__label">🚀 {{ .Site.Params.learning.label }}</span>
+            <span class="current-learning__tech">{{ .Site.Params.learning.tech }}</span>
+        </div>
+        {{ end }}
+
+        <div class="hero__actions">
+            <a href="#projects" class="btn btn--primary">Vedi i Progetti</a>
+            <a href="#contact" class="btn btn--outline">Contattami</a>
+        </div>
+    </div>
+</section>
+
+{{/* --- FEATURED PROJECTS SECTION --- */}}
+<section id="projects" class="section projects-section">
+    <div class="container">
+        <h2 class="section__title">Progetti Selezionati</h2>
+
+        <div class="projects-grid">
+            {{/* Loop sugli ultimi 3 progetti */}}
+            {{ $projects := where .Site.RegularPages "Section" "projects" }}
+            {{ range first 3 $projects }}
+            <article class="project-card">
+                <header class="project-card__header">
+                    <h3 class="project-card__title">
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </h3>
+                    <div class="project-card__meta">
+                        {{/* Mostra i primi 3 elementi dello stack tecnologico */}}
+                        {{ range first 3 .Params.tech_stack }}
+                        <span class="tech-badge">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                </header>
+
+                <div class="project-card__summary">
+                    <p>{{ .Summary | truncate 120 }}</p>
+                </div>
+
+                <footer class="project-card__footer">
+                    <a href="{{ .RelPermalink }}" class="link-arrow">Case Study (STAR) &rarr;</a>
+                </footer>
+            </article>
+            {{ end }}
+        </div>
+
+        <div class="section__footer">
+            <a href="/projects/" class="btn btn--text">Vedi l'archivio completo</a>
+        </div>
+    </div>
+</section>
+
+{{/* --- CONTACT SECTION --- */}}
+<section id="contact" class="section contact-section">
+    <div class="container">
+        <h2 class="section__title">Mettiamoci in contatto</h2>
+        <p class="contact-text">
+            {{ .Site.Params.contact.cta_text }}
+        </p>
+        <a href="mailto:{{ .Site.Params.contact.email }}" class="email-link">{{ .Site.Params.contact.email }}</a>
+
+        <div class="social-links">
+            {{ range .Site.Params.social }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="{{ .name }}">
+                {{ .name }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

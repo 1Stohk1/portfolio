@@ -1,0 +1,97 @@
+baseURL = 'https://example.com/'
+languageCode = 'it-it' # Ho impostato italiano, cambialo se il sito è in EN
+title = 'Portfolio'
+theme = [] # No theme, custom layout
+
+# Performance: Minification Settings
+[minify]
+  disableXML = false
+  minifyOutput = true
+
+[minify.tdewolff]
+  [minify.tdewolff.html]
+    keepConditionalComments = true
+    keepDefaultAttrVals = true
+    keepDocumentTags = true
+    keepEndTags = true
+    keepWhitespace = false
+
+# Asset Pipeline (Hugo Pipes)
+[build]
+  writeStats = true
+
+[caches]
+  [caches.getjson]
+    maxAge = "10s"
+  [caches.images]
+    dir = ":resourceDir/_gen"
+    maxAge = "336h"
+
+# SASS/SCSS Configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# URL Structure
+[permalinks]
+  projects = "/projects/:slug/"
+
+# Menus
+
+
+[[menu.main]]
+  identifier = "github"
+  name = "GitHub"
+  url = "https://github.com/1Stohk1"
+  weight = 20
+  pre = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom; margin-right: 4px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>'
+
+[[menu.main]]
+  identifier = "contact"
+  name = "Contatti"
+  url = "#contact"
+  weight = 30
+
+# ------------------------------------------------------------------
+# PARAMS: Dati personali e configurazione del sito
+# ------------------------------------------------------------------
+[params]
+  description = "Portfolio di Sviluppatore Backend e Full Stack Developer, con un background in IA."
+  author = "Christian Peluso"
+  og_image = "/images/me.png" # Immagine per le condivisioni social
+
+  # Profilo Personale (usato nella Hero Section e Footer)
+  [params.profile]
+    name = "Christian Peluso"
+    role = "Full Stack Developer"
+    # La tagline per la Hero section
+    tagline = "Costruisco esperienze digitali performanti e scalabili."
+    # Breve bio per footer o meta description
+    bio = "Appassionato di clean code, architetture serverless e AI."
+    location = "Campobasso, Italia"
+    image = "/images/me.png" # Aggiungi la tua foto in static/images/me.jpg
+    available_for_hire = true # Booleano utile per mostrare un badge "Open to work"
+
+  # Cosa stai studiando ora (Feature richiesta)
+  [params.learning]
+    active = true
+    label = "Attualmente sto studiando:"
+    tech = "Quantum Computing e Web3"
+
+  # Contatti
+  [params.contact]
+    email = "chrispeluso98@gmail.com"
+    cta_text = "Parliamo del tuo progetto"
+
+  # Social Media (Array di tabelle per massima flessibilità)
+  # Aggiungi o rimuovi blocchi a seconda delle necessità
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/1Stohk1"
+    icon = "github" # Nome del file SVG in /assets/icons/
+
+  [[params.social]]
+    name = "LinkedIn"
+    url = "https://linkedin.com/in/christian-peluso"
+    icon = "linkedin"
