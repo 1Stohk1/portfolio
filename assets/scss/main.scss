@@ -1,46 +1,48 @@
-// 1. Variables
-$font-stack: 'Inter', system-ui, -apple-system, sans-serif;
-$color-bg: #0f172a; // Deep dark blue fallback
-$color-text: #f8fafc; // White text
-$color-primary: #22d3ee; // Cypress Green / Turquoise
-$color-accent: #818cf8; // Indigo
-$spacing-unit: 1rem;
+// assets/scss/main.scss
 
-// 2. Global Reset
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+// 1. Variables & Colors (Dark Theme Palette)
+$font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+
+// Sfondo pagina: Deep Space (Blu Notte -> Viola Profondo)
+$bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #4c1d95 100%);
+
+// Colori Testo
+$color-text-main: #f8fafc;        // Bianco ghiaccio (leggibile su scuro)
+$color-text-muted: #94a3b8;       // Grigio bluastro per i testi secondari
+$color-primary: #38bdf8;          // Ciano elettrico (ottimo su viola)
+$color-accent-hover: #db2777;     // GRANATA/MAGENTA (per l'hover richiesto)
+
+// Reset
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: linear-gradient(135deg, #4c1d95 0%, #06b6d4 100%); // Purple to Turquoise
-  background-attachment: fixed;
-  color: $color-text;
+  background: $bg-gradient; // Gradiente su tutta la pagina
+  background-attachment: fixed; // Parallax effect
+  color: $color-text-main;
   font-family: $font-stack;
   line-height: 1.6;
-  min-height: 100vh;
+  min-height: 100vh; // Assicura che il gradiente copra tutto lo schermo
   -webkit-font-smoothing: antialiased;
 }
 
-// 3. Container & Layout
+// 2. Container
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 $spacing-unit * 2;
+  padding: 0 2rem;
 }
 
+// Links Globali
 a {
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease;
-  
-  &:hover {
-    color: $color-primary;
-  }
+  &:hover { color: $color-primary; }
 }
 
-// Header & Nav
+// 3. Components
+
+// --- HEADER & NAV (Preserved from previous version) ---
 .site-header {
   position: sticky;
   top: 0;
@@ -59,7 +61,7 @@ a {
   .logo {
     font-weight: 800;
     font-size: 1.5rem;
-    background: linear-gradient(to right, #fff, #22d3ee);
+    background: linear-gradient(to right, #fff, $color-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -77,19 +79,18 @@ a {
         
         &:hover {
             color: $color-primary;
-            text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
     }
   }
 }
 
-
-// 4. Components (BEM like)
+// --- HERO SECTION ---
 .hero {
-  padding: 6rem 0 4rem;
-  text-align: center;
+  padding: 8rem 0 5rem;
+  text-align: center; // Preserved centering
   
-  // Profile Image
+  // Profile Image (Preserved Customization)
   &__image-wrapper {
     margin-bottom: 2rem;
     
@@ -100,8 +101,34 @@ a {
       object-fit: cover;
     }
   }
+  
+  &__greeting {
+    display: block;
+    font-size: 1.1rem;
+    color: $color-primary; // Ciano
+    margin-bottom: 1rem;
+    font-family: monospace; // Tocco "Code"
+  }
 
-  // Current Learning Section
+  &__title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #fff, #a5b4fc); // Testo gradiente
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__bio {
+    font-size: 1.25rem;
+    color: $color-text-muted;
+    max-width: 65ch;
+    margin: 0 auto 2.5rem auto; // Centered
+  }
+
+  // Current Learning Section (Preserved Customization)
   .current-learning {
       margin-top: 1.5rem;
       margin-bottom: 3rem; // Increased spacing before actions
@@ -121,93 +148,141 @@ a {
           border-radius: 99px;
       }
   }
-  
-  &__greeting {
-    display: block;
-    font-size: 1.2rem;
-    color: $color-primary;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  &__title {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  &__bio {
-    font-size: 1.25rem;
-    color: lighten($color-text, 20%);
-    max-width: 65ch;
-    margin-bottom: 2rem;
-  }
 }
 
 // Buttons
 .btn {
   display: inline-flex;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   margin-right: 1rem;
+  transition: all 0.2s ease;
   
   &--primary {
-    background-color: $color-text;
-    color: #4c1d95; // Dark purple for contrast on white bg
-    &:hover { background-color: $color-primary; color: #fff; }
+    background: $color-primary;
+    color: #0f172a; // Testo scuro su bottone chiaro
+    &:hover { background: lighten($color-primary, 10%); box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
   }
   
   &--outline {
-    border: 1px solid $color-text;
-    &:hover { border-color: $color-primary; color: $color-primary; }
+    background: rgba(255,255,255, 0.05);
+    border: 1px solid rgba(255,255,255, 0.2);
+    color: $color-text-main;
+    &:hover { border-color: $color-primary; color: $color-primary; background: rgba(255,255,255, 0.1); }
   }
 }
 
-// Project Cards
+// --- PROJECT CARDS (DARK GLASSMOPHISM) ---
+.projects-section {
+    padding-bottom: 4rem;
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.05); // Subtle glass tint
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 12px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+  // GLASS EFFECT BASE
+  background: rgba(15, 23, 42, 0.6); // Blu scuro molto trasparente
+  backdrop-filter: blur(12px);       // Sfocatura dello sfondo dietro la card
+  -webkit-backdrop-filter: blur(12px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.1); // Bordo sottile appena visibile
+  border-radius: 16px;
+  padding: 2rem;
+  
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
 
+  // Effetto HOVER GRANATA
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-7px);
+    // Sfondo diventa leggermente Granata/Viola
+    background: linear-gradient(145deg, rgba(30, 27, 75, 0.8), rgba(131, 24, 67, 0.3)); 
+    border-color: $color-accent-hover; // Bordo diventa Granata acceso
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5); // Ombra profonda
   }
 
   &__title {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    a { color: #fff; }
+    font-weight: 700;
+    margin-bottom: 1rem;
+    
+    a { 
+        color: $color-text-main;
+        text-decoration: none;
+        &::before { content: ''; position: absolute; inset: 0; z-index: 1; }
+    }
   }
 
   &__meta {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__summary {
+    color: $color-text-muted; // Grigio chiaro per leggere bene su scuro
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  &__footer {
+    margin-top: auto;
+    z-index: 2;
   }
 }
 
+// Badge Tecnologici Dark
 .tech-badge {
-  display: inline-block;
   font-size: 0.75rem;
-  background: #f1f5f9; // Slate-100
-  color: #0f172a; // Dark text for contrast!
-  padding: 0.25rem 0.75rem;
-  border-radius: 99px;
-  margin-right: 0.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: monospace;
+  background: rgba(255, 255, 255, 0.1); // Trasparente chiaro
+  color: $color-primary; // Testo ciano
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
+
+// Link Freccia
+.link-arrow {
+  color: $color-primary;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  
+  &::after {
+    content: "→";
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  // Quando la card va in hover, la freccia diventa bianca per contrasto massimo
+  .project-card:hover & {
+    color: #fff;
+    &::after { transform: translateX(6px); }
+  }
+}
+
+// Footer sito
+footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255, 0.1);
+    color: $color-text-muted;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+// Contact Section tweaks
+.contact-text { color: $color-text-muted; }
+.email-link { color: $color-text-main; font-size: 1.5rem; font-weight: 700; display: block; margin: 1rem 0; }
