@@ -3,7 +3,9 @@
     "tags": [
       "a",
       "article",
+      "blockquote",
       "body",
+      "code",
       "div",
       "footer",
       "h1",
@@ -18,15 +20,16 @@
       "main",
       "meta",
       "nav",
+      "ol",
       "p",
       "path",
+      "pre",
       "script",
       "section",
       "span",
       "strong",
       "svg",
-      "title",
-      "ul"
+      "title"
     ],
     "classes": [
       "badge",
@@ -34,6 +37,8 @@
       "btn--outline",
       "btn--primary",
       "btn--text",
+      "btn-outline",
+      "btn-sm",
       "contact-section",
       "contact-text",
       "container",
@@ -51,7 +56,9 @@
       "hero__title",
       "highlight",
       "link-arrow",
+      "list-grid",
       "logo",
+      "nav-item",
       "nav-links",
       "project-card",
       "project-card__footer",
@@ -69,7 +76,6 @@
       "section",
       "section__footer",
       "section__title",
-      "site-footer",
       "site-header",
       "social-link",
       "social-links",
@@ -80,9 +86,13 @@
       "tech-stack"
     ],
     "ids": [
+      "3-progetto-creativo-generative-music-ai",
       "approfondimento-tecnico",
+      "architettura-audio",
+      "architettura-del-nodo",
       "contact",
-      "main-content",
+      "dettagli-della-ricerca",
+      "implementazione-qiskit",
       "projects"
     ]
   }

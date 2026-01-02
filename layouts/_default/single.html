@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="container">
+    <header>
+        <h1>{{ .Title }}</h1>
+        <div class="meta">
+            {{ if .Params.tech_stack }}
+            <strong>Stack:</strong> {{ delimit .Params.tech_stack ", " }}
+            {{ end }}
+        </div>
+    </header>
+
+    <div class="content" style="margin-top: 2rem;">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
