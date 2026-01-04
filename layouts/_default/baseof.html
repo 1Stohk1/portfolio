@@ -9,19 +9,13 @@
   <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
   <meta name="author" content="{{ .Site.Params.author }}">
 
-<meta name="google-site-verification" content="xDxyyirb6F8vjgwsu88OJNlYrgu58FD_EVt8Q1jXYFA" />
+  <meta name="google-site-verification" content="xDxyyirb6F8vjgwsu88OJNlYrgu58FD_EVt8Q1jXYFA">
 
-  {{/* Caricamento CSS tramite Hugo Pipes (SCSS opzionale, qui usiamo CSS semplice per ora) */}}
-  {{ $style := resources.Get "css/style.css" }}
-  {{ if $style }}
-  <link rel="stylesheet" href="{{ $style.Permalink }}">
-  {{ else }}
-  {{/* Fallback se non hai ancora creato il CSS */}}
   {{/* --- SCSS PIPELINE --- */}}
+  {{/* Hugo cercherà assets/scss/main.scss */}}
   {{ $options := dict "targetPath" "css/style.css" "outputStyle" "compressed" "enableSourceMap" true }}
   {{ $style := resources.Get "scss/main.scss" | toCSS $options | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
-  {{ end }}
 </head>
 
 <body>
