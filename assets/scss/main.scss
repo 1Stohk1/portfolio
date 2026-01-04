@@ -15,6 +15,10 @@ $color-accent-hover: #db2777;     // GRANATA/MAGENTA (per l'hover richiesto)
 // Reset
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+    background-color: #0f172a; // Fallback to avoid white flash
+}
+
 body {
   background: $bg-gradient; // Gradiente su tutta la pagina
   background-attachment: fixed; // Parallax effect
@@ -23,6 +27,16 @@ body {
   line-height: 1.6;
   min-height: 100vh; // Assicura che il gradiente copra tutto lo schermo
   -webkit-font-smoothing: antialiased;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $bg-gradient;
+    z-index: -1;
 }
 
 // 2. Container

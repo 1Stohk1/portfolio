@@ -32,6 +32,7 @@
       "title"
     ],
     "classes": [
+      "background",
       "badge",
       "btn",
       "btn--outline",
