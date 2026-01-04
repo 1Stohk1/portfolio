@@ -9,6 +9,8 @@
   <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
   <meta name="author" content="{{ .Site.Params.author }}">
 
+  <meta name="google-site-verification" content="google3e6ea1e983eeca9a">
+
   {{/* Caricamento CSS tramite Hugo Pipes (SCSS opzionale, qui usiamo CSS semplice per ora) */}}
   {{ $style := resources.Get "css/style.css" }}
   {{ if $style }}
