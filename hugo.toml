@@ -98,5 +98,5 @@ theme = [] # No theme, custom layout
 
   [[params.social]]
     name = "Metamask"
-    url = "link.metamask.io/rewards?referral=Q74T9D"
+    url = "https://link.metamask.io/rewards?referral=Q74T9D"
     icon = "metamask"
