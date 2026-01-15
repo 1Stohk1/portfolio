@@ -1,6 +1,6 @@
 ---
 title: "Home"
-date: 2023-10-27
+date: 2026-01-15
 description: "Portfolio di Ingegnere IA e Full Stack Developer."
 ---
 
