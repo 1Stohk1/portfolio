@@ -83,7 +83,12 @@
         <div class="social-links">
             {{ range .Site.Params.social }}
             <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="{{ .name }}">
+                {{ $icon := resources.Get (printf "icons/%s.svg" .icon) }}
+                {{ if $icon }}
+                {{ $icon.Content | safeHTML }}
+                {{ else }}
                 {{ .name }}
+                {{ end }}
             </a>
             {{ end }}
         </div>
